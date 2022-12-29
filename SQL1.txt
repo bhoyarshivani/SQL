@@ -1,0 +1,333 @@
+show databases;
+use nagpur;
+create table SEMP (
+EMPNO char(4),
+EMPNAME CHAR(20),
+BASIC FLOAT ,
+ DEPTNO CHAR(2) ,
+ DEPTHEAD CHAR(4));
+ commit;
+ 
+ 
+SHOW tables;
+SELECT * FROM SEMP;
+create table SDEPT (
+DEPTNO CHAR(2) ,
+ DEPTNAME CHAR(15));
+ 
+ INSERT into SDEPT values
+ ('10','Development'),
+  ('20','Training');
+  savepoint lunch;
+  
+  select * from SDEPT;
+  INSERT into SEMP values  
+('0001', 'SUNIL', 6000, '10',NULL ),
+  ('0002', 'HIREN', 8000, '20',NULL ),
+  ('0003', 'ALI', 4000, '10','0001' ),
+  ('0004', 'GEORGE', 6000,NULL, '0002' );
+  savepoint evening;
+  rollback work to lunch;
+CREATE TABLE SUPPLIERS(
+`S#`CHAR(10),SNAME VARCHAR(10),STATUS INT,CITY VARCHAR(20));
+SELECT * FROM SUPPLIERS;
+  SHOW tables;
+  
+  
+CREATE TABLE PARTS(
+`P#`CHAR(10),PNAME VARCHAR(10),COLOR CHAR(10), WEIGHT FLOAT ,CITY VARCHAR(20));
+SELECT * FROM PARTS;
+  SHOW tables;
+  
+  CREATE TABLE PROJECTS(
+`j#`CHAR(10),JNAME VARCHAR(10),CITY VARCHAR(20));
+
+SELECT * FROM PROJECTS;
+  SHOW tables;
+  
+  CREATE TABLE SUPPLIER_PARTS_PROJECT(
+`S#`CHAR(10),`P#`CHAR(10),`j#`CHAR(10),QTY VARCHAR(20));
+SELECT * FROM SUPPLIER_PARTS_PROJECT;
+  SHOW tables;
+  
+  INSERT INTO SUPPLIERS (`S#`,STATUS)
+  VALUES('S1','10'),
+    ('S2','20'),
+    ('S3','30');
+    
+  INSERT INTO PARTS  (`P#`,)
+  VALUES('P1'),
+    ('P2'),
+    ('P3');   
+     
+  INSERT INTO PROJECTS  (`j#`)
+  VALUES('J1'),
+    ('J2'),
+    ('J3');   
+    
+     INSERT INTO SUPPLIERS  (STATUS)
+  VALUES(10),
+    (20),
+    (30);
+    
+    DROP TABLE SUPPLIERS;
+    
+ USE NAGPUR;   
+ 
+    
+  INSERT INTO SUPPLIERS
+  WHERE STAT
+  VALUES('J1'),
+    ('J2'),
+    ('J3');
+   INSERT INTO SUPPLIERS (`S#`,STATUS,City,SNAME)
+  VALUES('S1','10','Pune','SHIVANI'),
+    ('S2','20','Mumbai','SARANG'),
+    ('S3','30','Latur','SWATI');
+    
+     INSERT INTO SUPPLIERS (city)
+  VALUES('Latur'),
+    ('Pune'),
+    ('Mumbai');
+    
+    select * from suppliers;
+    
+    SELECT * FROM SUPPLIERS
+ORDER BY CITY;
+
+select * from suppliers
+where status>10 and status< 30;
+
+
+INSERT INTO PARTS  (`P#`,Pname,Color,Weight,City)
+  VALUES('P1','Swati','Green',55.88,'Latur'),
+   ('P2','Shivani','Black',60.56,'Nagpur'),
+  ('P3','Suyog','yellow',50.44,'Ratnagiri');
+  select * from parts;
+  
+  SELECT * FROM suppliers WHERE City LIKE 'T%';
+      SELECT * FROM parts WHERE City LIKE 'T%';
+    drop  table PARTs;
+    
+    UPDATE PROJECTS SET JNAME='ABHISHEK' WHERE [`j#`] = 'J1';
+    SELECT * FROM PROJECTS;
+    USE NAGPUR;
+    
+     SET SQL_SAFE_UPDATES=0;
+    
+        UPDATE SUPPLIERS SET SNAME='ASHU' WHERE CITY = 'Latur';
+            SELECT * FROM suppliers;
+            
+             SELECT * FROM suppliers
+             WHERE Sname between 'A' and  'R';
+	
+             SELECT * FROM suppliers;
+             WHERE Sname between 'A' and  'R';
+             
+             SELECT UPPER (SNAMES) FROM SUPPLIERS
+             
+             select upper(Sname) from suppliers;
+                 select lower(Sname) from suppliers;
+                 
+            select rpad (Sname,25 ,'') from suppliers; 
+            
+       commit; 
+          commit; 
+       savepoint lunch;
+  rollback work to lunch;
+  
+  -- NEW CONCEPT--
+  
+  select truncate (status,1) from suppliers; -- remove decimal
+select lpad (sname,25,'*') from  suppliers;
+ select rpad (sname,25,'*') from  suppliers; 
+ 
+ select replace ( sname,'NI','ni') from  suppliers; 
+ 
+ select instr ( sname, 'ni') from suppliers;
+ 
+ select upper (sname ) from suppliers;
+ 
+ SELECT REPLACE("XYZ FGH XYZ", "X", "M");
+ 
+  select instr ( sname, 'A',2) from suppliers; -- not work in sql
+  
+  select length (sname)from suppliers; -- only for varchar
+   select ascii (sname) from suppliers; 
+   select ascii (substr(sname,2)) from suppliers; 
+   select ascii (substr(sname,2)) from suppliers; 
+    select ascii (substr(sname,5)) from suppliers; 
+    
+    select ascii ('A') from suppliers; 
+    select  distinct ('A') from suppliers; 
+    
+    SELECT * FROM suppliers
+WHERE sname='SHIVANI' AND CITY='Pune'; -- jithe shivani ani pune ahe toch row display honar ,jar shivani asel ani city latur asel tr condition false hoil
+
+    SELECT * FROM suppliers
+WHERE sname='SHIVANI' AND CITY='Latur';
+ 
+     SELECT * FROM suppliers
+WHERE sname='SHIVANI' OR CITY='Pune';
+
+
+    SELECT * FROM suppliers
+WHERE sname='SHIVANI' OR CITY='Latur';
+
+    UPDATE SUPPLIERS SET city ='Pandharkawada' WHERE sname = 'ashu';
+            SELECT * FROM suppliers;
+
+  sysdate(),now() ,sleep(5), sysdate(),now() from suppliers;
+  
+  select adddate(sysdate(),2)from suppliers; -- add two days
+   select adddate(sysdate(), interval 2 month)from suppliers; -- add two months 
+   select adddate(sysdate(), interval 2 year)from suppliers; -- add two year 
+   select adddate(sysdate(),-2)from suppliers; -- reduce two days
+   
+   select dayname(sysdate())from suppliers; -- display day name
+   
+    select last_day(sysdate())from suppliers; -- last day of month
+    
+   select addtime(sysdate(),'1')from suppliers;  
+      select addtime('2022-10-15 11:00:00','1')from suppliers; -- adds 1 second
+    select addtime('2022-10-15 11:00:00','00:01:00')from suppliers; -- adds 1 minute
+    select addtime('2022-10-15 11:00:00','01:30:45')from suppliers;  -- adds 1 hr 30 min 45 seconds
+   select addtime('2022-10-15 23:00:00','01:30:45')from suppliers;  -- adds 1 hr 30 min 45 seconds
+   
+-- 27 - 12 - 2022--
+    USE NAGPUR;
+select greatest(status,20) from suppliers;
+   select least(status,20) from suppliers;
+   
+   select greatest(status*20,200) "CASHBACK" from suppliers;
+      select LEAST(status*20,400) "CASHBACK" from suppliers;
+   
+   select 
+   case
+   when status=10 then 'goodsuyog'
+   when status=20 then 'smartshivani'
+   when status=30 then 'Tailentedswati'
+   else 'other'
+   end " Deptname"
+   from suppliers;
+   
+   
+   select 
+   case
+   when status=10 then status*12*0.4
+   when status=20 then status*12*0.8
+   when status=30 then status*12*0.9
+   else 'other'
+   end " Deptname"
+   from suppliers;
+   
+   
+   select  SNAME,STATUS, 
+   case
+   when SIGN(STATUS -20)=1 then 'HIGH INCOME'
+   when SIGN(STATUS -20)=-1 then 'LOW INCOME'
+   else 'MIDDLE INCOME'
+   end " Deptname"
+   FROM suppliers 
+   order by 1;
+   
+   --- GROUP FUNCTION ---
+     USE NAGPUR;
+   SELECT user() FROM DUAL;
+   SHOW character SET;
+   
+   SELECT  sum(STATUS) FROM SUPPLIERS;
+   SELECT  MAX(STATUS) FROM SUPPLIERS;
+   SELECT  MIN(STATUS) FROM SUPPLIERS;
+   SELECT  AVG(STATUS) FROM SUPPLIERS; 
+   SELECT COUNT(*),MIN(STATUS),MAX(STATUS),MIN(STATUS),AVG(STATUS) FROM SUPPLIERS;
+   
+ -- SELECT * FROM SUPPLIERS WHERE STATUS > MIN(STATUS); -- 
+ 
+    SELECT  sum(STATUS) FROM SUPPLIERS WHERE CITY = 'Pune';
+  
+  SELECT CITY, MIN(STATUS) FROM SUPPLIERS GROUP BY CITY;
+  
+  
+  create table EMP (
+EMPNO INT  ,
+ENAME varchar(15),
+SAL float,
+DEPTNO INT,
+JOB char(5),
+MGR INT);
+
+ 
+ INSERT into  EMP values
+( 1,'ARUN',8000,1,'M',4 );
+ INSERT into  EMP values
+( 7,'Matt',5000,89,null,null);
+
+SELECT*FROM EMP;
+
+create table DEPT (
+DEPTNO CHAR(2) ,
+ DEPTNAME CHAR(15),
+ LOCT varchar(20));
+ 
+  INSERT into  DEPT values
+  (1,'TRN','BBY');
+  INSERT into  DEPT values
+  (3,'MKTG','CAL');
+  SELECT * FROM DEPT;
+
+SELECT EMP.EMPNO,EMP.ENAME,EMP.SAL,DEPT.DEPTNAME, DEPT.DEPTNO FROM EMP,DEPT WHERE   DEPT.DEPTNO = EMP.DEPTNO  ORDER BY 3;  -- FASTER 
+
+SELECT EMP.EMPNO,EMP.ENAME,EMP.SAL,DEPT.DEPTNAME FROM EMP,DEPT WHERE  EMP.DEPTNO = DEPT.DEPTNO   ORDER BY 1;  -- SLOWER 
+
+
+SELECT EMPNO,ENAME FROM EMP where DEPTNO=1;
+
+SELECT EMP.EMPNO,EMP.ENAME,EMP.SAL,DEPT.DEPTNAME, DEPT.DEPTNO FROM EMP,DEPT WHERE   DEPT.DEPTNO = EMP.DEPTNO(+)  ORDER BY 1; -- only in oracle Half Right OuterJoin
+SELECT EMP.EMPNO,EMP.ENAME,EMP.SAL,DEPT.DEPTNAME, DEPT.DEPTNO FROM EMP,DEPT WHERE   DEPT.DEPTNO (+)= EMP.DEPTNO  ORDER BY 1; -- only in oracle Half Left OuterJoin
+
+SELECT EMP.EMPNO,EMP.ENAME,EMP.SAL,DEPT.DEPTNAME, DEPT.DEPTNO FROM EMP,DEPT WHERE   DEPT.DEPTNO = EMP.DEPTNO(+)
+union                                                                                                             -- only in oracle Full OuterJoin
+SELECT EMP.EMPNO,EMP.ENAME,EMP.SAL,DEPT.DEPTNAME, DEPT.DEPTNO FROM EMP,DEPT WHERE   DEPT.DEPTNO (+)= EMP.DEPTNO;
+
+-- Outer Join in MySQL --
+SELECT  DEPT.DEPTNO,EMP.EMPNO,EMP.ENAME,EMP.SAL,DEPT.DEPTNAME FROM EMP right outer join DEPT 
+on (DEPT.DEPTNO = EMP.DEPTNO);                                                                
+
+SELECT  DEPT.DEPTNO,EMP.EMPNO,EMP.ENAME,EMP.SAL,DEPT.DEPTNAME FROM EMP left outer join DEPT 
+on (DEPT.DEPTNO = EMP.DEPTNO);
+
+-- Full outer join --
+SELECT  DEPT.DEPTNO,EMP.EMPNO,EMP.ENAME,EMP.SAL,DEPT.DEPTNAME FROM EMP right outer join DEPT 
+on (DEPT.DEPTNO = EMP.DEPTNO)
+union
+SELECT  DEPT.DEPTNO,EMP.EMPNO,EMP.ENAME,EMP.SAL,DEPT.DEPTNAME FROM EMP left outer join DEPT 
+on (DEPT.DEPTNO = EMP.DEPTNO);
+
+-- Cartesian Join --
+select  deptname,ename from emp,dept order by 1;
+
+-- Self Join --
+
+select a.ename,b.ename from emp as b,emp as a
+where a.mgr  = b.empno;
+
+
+create table DEPTHEAD (
+DEPTNO CHAR(2) ,
+ DEPTNAME CHAR(15));
+ INSERT into  DEPTHEAD values
+  (1,'Arun'),
+ (2,'Jack');
+
+SELECT  DEPT.DEPTNO,EMP.EMPNO,EMP.ENAME,EMP.SAL,DEPT.DEPTNAME,DEPTHEAD.deptname FROM EMP,DEPT,DEPTHEAD
+where DEPTHEAD.deptno = DEPT.DEPTno and dept.deptno = emp.deptno;
+
+-- Many : Many
+
+-- Sub Queries --
+select ename,sal from emp
+where sal=(select min(sal) from emp);
+
+select ename, max(sal) from emp
+where sal<(select max(sal) from emp);
